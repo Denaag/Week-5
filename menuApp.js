@@ -137,3 +137,5 @@ class Menu {
 
 let menu = new Menu();
 menu.start();
+
+console.log("Hello World");
