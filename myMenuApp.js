@@ -41,6 +41,7 @@ class Menu { // actual menu itself and this class is what drives the application
             switch (selection) { // loop type to look at selection - all cases below haven't been created yet.
                 case "1":
                     this.createStore()
+                    break;
                 case "2":
                     this.viewStore();
                     break;
@@ -98,8 +99,8 @@ class Menu { // actual menu itself and this class is what drives the application
             this.selectedStore = this.stores[index]; //set our selectedStore class property to the store that was input by the user.
             let description = "Store Name: " + this.selectedStore.sport + "\n";
 
-            for (i = 0; i < this.selectedStore.customers.length; i++) { //selectedStore is the store and each store has a customer array and the length attached is going to iterate through the customer array not the selectedStore.
-                description += i + ") " + this.selectedStore.customers[i].sport + " - " + this.selectedStore.customers[i].shoe + "\n"; //this will be a list up of all the customers and the store they're in.
+            for (let i = 0; i < this.selectedStore.customers.length; i++) { //selectedStore is the store and each store has a customer array and the length attached is going to iterate through the customer array not the selectedStore.
+                description += i + ") " + this.selectedStore.customers[i].sport + " - " + this.selectedStore.customers[i].shoe + "\n"; //this will be a list of all the customers and the store they're in.
             }
 
             let selection = this.showStoreMenuOptions(description); //using top-down development again because we haven't built this yet. this is to provide menu for store option / sub menu - we need to create this list of menu options above, right below the showMainMenuOptions prompt
@@ -110,6 +111,26 @@ class Menu { // actual menu itself and this class is what drives the application
                 case "2":
                     this.deleteCustomer(); //break isn't neede after this because there is nothing that will come after this case. - method that needs to be created again like above cases
             }
+        }
+    }
+
+    deleteStore() {
+        let index = prompt("Enter index of sport store that is being closed/deleted for the day:"); //all customers have left store and is now closed for the day
+        if (index > -1 && index < this.stores.length) { //validate if user input is true
+            this.stores.splice(index, 1); //delete the requested index/only 1
+        }
+    }
+
+    createCustomer() { //creating customer profile in order to send customer to correct store
+        let sport = prompt("Enter sport type for customer:"); //this will allow customer to be placed at correct store.
+        let shoe = prompt("Enter Signature Player shoe customer is looking for:") // which icon player shoe is customer looking for?
+        this.selectedStore.customers.push(new Sneaker(sport, shoe)) //selected store variable allows us to know what store is selected when we pass customer info into it. & push customer to correct store.
+    }
+
+    deleteCustomer() {
+        let index = prompt("Enter index of the customer that is leaving store after purchase:"); //after purchase is made, customer is leaving store.
+        if (index > -1 && index < this.selectedStore.customers.length) { //validate that customer is leaving/exiting - based on customers at the sport store
+            this.selectedStore.customers.splice(index, 1); //this is the actual act of removing 1 element/index requested
         }
     }
 }
