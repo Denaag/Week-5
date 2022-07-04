@@ -24,7 +24,7 @@ class Team {
     }
 
     describe() { //method
-        return `${this.name} has ${this.player.length} players.`;
+        return `${this.name} has ${this.players.length} players.`;
     }
 }
 
@@ -77,7 +77,7 @@ class Menu {
             2) delete player
             -------------------
             ${teamInfo}
-        `)
+        `);
     }
 
     displayTeams() {
