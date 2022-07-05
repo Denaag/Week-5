@@ -1,4 +1,4 @@
-class Sneaker { //a class is needed - create a sneaker based on sneaker type that is associated with the sport played
+class Sneaker { //a class is needed - sneaker store is entered based on sneaker type that is associated with the sport played
     constructor(sport, shoe) {
         this.sport = sport;
         this.shoe = shoe;
